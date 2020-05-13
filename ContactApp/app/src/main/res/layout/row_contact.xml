@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:id="@+id/layout"
     android:padding="8dp">
 
     <LinearLayout
@@ -26,6 +27,7 @@
             android:id="@+id/tv_date_of_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="@string/lb_date_of_birth"
             android:textSize="16sp" />
 
@@ -33,6 +35,7 @@
             android:id="@+id/tv_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="@string/lb_gender"
             android:textSize="16sp" />
 
@@ -40,6 +43,7 @@
             android:id="@+id/tv_profession"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="@string/lb_profession"
             android:textSize="16sp" />
 
@@ -47,6 +51,7 @@
             android:id="@+id/tv_email_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="@string/lb_email"
             android:textSize="16sp" />
 

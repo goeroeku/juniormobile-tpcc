@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.service.autofill.OnClickAction;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.aiczone.contactapp.adapter.ContactAdapter;
+import com.aiczone.contactapp.db.AppDatabase;
 import com.aiczone.contactapp.model.Contact;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -40,22 +42,32 @@ public class MainActivity extends AppCompatActivity {
         rvContact = findViewById(R.id.rvContact);
         rvContact.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+//        dummy data
+//        List<Contact> contacts = new ArrayList<>();
+//        Contact contact = new Contact();
+//        contact.name = "Aic";
+//        contact.dateOfBirth = "01-01-2020";
+//        contact.profession = "Mahasiswa";
+//        contact.gender = "Laki-laki";
+//        contact.email = "admin@me.id";
+//        contact.phone = "0281";
+//        contacts.add(contact);
+//        contacts.add(contact);
 
-        // dummy data
-        List<Contact> contacts = new ArrayList<>();
-        Contact contact = new Contact();
-        contact.name = "Aic";
-        contact.dateOfBirth = "01-01-2020";
-        contact.profession = "Mahasiswa";
-        contact.gender = "Laki-laki";
-        contact.email = "admin@me.id";
-        contact.phone = "0281";
-        contacts.add(contact);
-        contacts.add(contact);
+        initListData();
+    }
 
-        adapter = new ContactAdapter(contacts);
+    private void initListData(){
+        List<Contact> contacts = AppDatabase.getInstance(this).contactDao().getAll();
+
+        adapter = new ContactAdapter(this,contacts);
         rvContact.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        initListData();
     }
 }
