@@ -18,26 +18,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aiczone.bookapp.FormActivity;
 import com.aiczone.bookapp.R;
 import com.aiczone.bookapp.db.AppDatabase;
-import com.aiczone.bookapp.model.Contact;
+import com.aiczone.bookapp.model.Book;
 import com.aiczone.bookapp.utils.Helper;
 
 import java.util.List;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     private Context context;
-    private List<Contact> contacts;
+    private List<Book> books;
 
-    public ContactAdapter(Context context, List<Contact> contacts) {
+    public BookAdapter(Context context, List<Book> books) {
         this.context = context;
-        this.contacts = contacts;
+        this.books = books;
     }
 
 
-    private void delete(Contact contact, int position){
-        AppDatabase.getInstance(context).contactDao().delete(contact);
+    private void delete(Book book, int position) {
+        AppDatabase.getInstance(context).bookDao().delete(book);
 
-        contacts.remove(contact);
+        books.remove(book);
         notifyItemRemoved(position);
 //        notifyItemRangeChanged(position, getItemCount()); // optional
     }
@@ -45,21 +45,20 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_contact, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_data, parent, false);
         return new ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final Contact contact = contacts.get(position);
+        final Book book = books.get(position);
 
-        holder.tvName.setText(contact.name);
-        String formatedDate = Helper.formatDMYLong(contact.dateOfBirth);
-        holder.tvDateOfBirth.setText("Tgl. lahir: " + formatedDate);
-        holder.tvGender.setText("Jenis kelamin: " + contact.gender);
-        holder.tvProfession.setText("Pekerjaan: " + contact.profession);
-        holder.tvEmailPhone.setText("CP: " + contact.email + " | " + contact.phone);
+        holder.tvTitle.setText(book.title);
+        String formatedDate = Helper.formatDMYLong(book.dateOfIssue);
+        holder.tvDateOfIssue.setText(Helper.getString(context, R.string.lb_date_of_issue) + ": " + formatedDate);
+        holder.tvISBN.setText(Helper.getString(context, R.string.lb_isbn) + ": " + book.isbn);
+        holder.tvCategory.setText(Helper.getString(context, R.string.lb_category) + ": " + book.category);
 
         holder.bnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +71,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-                                delete(contact, position);
+                                delete(book, position);
                             }
                         });
-                builder.setNegativeButton("Batal",null);
+                builder.setNegativeButton("Batal", null);
                 AlertDialog alert = builder.create();
                 alert.show();
             }
@@ -85,7 +84,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, FormActivity.class);
-                intent.putExtra("contact",contact);
+                intent.putExtra("book", book);
                 context.startActivity(intent);
             }
         });
@@ -93,22 +92,21 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return (contacts != null) ? contacts.size() : 0;
+        return (books != null) ? books.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvDateOfBirth, tvProfession, tvGender, tvEmailPhone;
+        TextView tvTitle, tvDateOfIssue, tvCategory, tvISBN;
         ImageButton bnDelete;
         LinearLayout layout;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvName = itemView.findViewById(R.id.tv_name);
-            tvDateOfBirth = itemView.findViewById(R.id.tv_date_of_birth);
-            tvProfession = itemView.findViewById(R.id.tv_profession);
-            tvGender = itemView.findViewById(R.id.tv_gender);
-            tvEmailPhone = itemView.findViewById(R.id.tv_email_phone);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvDateOfIssue = itemView.findViewById(R.id.tv_date_of_issue);
+            tvCategory = itemView.findViewById(R.id.tv_category);
+            tvISBN = itemView.findViewById(R.id.tv_isbn);
 
             bnDelete = itemView.findViewById(R.id.bnDelete);
             layout = itemView.findViewById(R.id.layout);

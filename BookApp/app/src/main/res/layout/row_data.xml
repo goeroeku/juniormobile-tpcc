@@ -15,44 +15,36 @@
         tools:ignore="Suspicious0dp">
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/app_name"
+            android:text="@string/lb_title"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_date_of_birth"
+            android:id="@+id/tv_date_of_issue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/lb_date_of_birth"
+            android:text="@string/lb_date_of_issue"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_gender"
+            android:id="@+id/tv_isbn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/lb_gender"
+            android:text="@string/lb_isbn"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_profession"
+            android:id="@+id/tv_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/lb_profession"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_email_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="@string/lb_email"
+            android:text="@string/lb_category"
             android:textSize="16sp" />
 
     </LinearLayout>

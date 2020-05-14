@@ -1,6 +1,7 @@
 package com.aiczone.bookapp.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 
 public class Helper {
     public static String formatDMY(int day, int month, int year) {
@@ -20,6 +21,10 @@ public class Helper {
         int day = Integer.parseInt(temp[2]);
 
         return lPad(String.valueOf(day)) + " " + getBulan(Integer.parseInt(temp[1])) + " " + temp[0];
+    }
+
+    public static String getString(Context context, int stringId){
+        return context.getResources().getString(stringId);
     }
 
     @SuppressLint("DefaultLocale")

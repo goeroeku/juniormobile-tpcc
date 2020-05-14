@@ -11,28 +11,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.aiczone.bookapp.db.AppDatabase;
-import com.aiczone.bookapp.model.Contact;
+import com.aiczone.bookapp.model.Book;
 import com.aiczone.bookapp.utils.Helper;
 
 import java.util.Calendar;
 
 public class FormActivity extends AppCompatActivity {
 
-    private EditText etName, etDateOfBirth, etEmail, etPhone;
-    private Spinner spProfession;
-    private RadioGroup rgGender;
-    private RadioButton rbGender, rbMale, rbFemale;
+    private EditText etTitle, etDateOfIssue, etISBN;
+    private Spinner spCategory;
     private Button bnSave;
 
     // data
-    private String dateOfBirth = "";
-    private Contact contact;
+    private String dateOfIssue = "";
+    private Book book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +36,10 @@ public class FormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form);
         this.setFinishOnTouchOutside(false);
 
-        etName = findViewById(R.id.etName);
-        etEmail = findViewById(R.id.etEmail);
-        etPhone = findViewById(R.id.etPhone);
-        etDateOfBirth = findViewById(R.id.etDateOfBirth);
-        etDateOfBirth.setOnClickListener(new View.OnClickListener() {
+        etTitle = findViewById(R.id.etTitle);
+        etISBN = findViewById(R.id.etISBN);
+        etDateOfIssue = findViewById(R.id.etDateOfIssue);
+        etDateOfIssue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
@@ -58,49 +53,39 @@ public class FormActivity extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                etDateOfBirth.setText(Helper.formatDMY(dayOfMonth,monthOfYear+1, year));
-                                dateOfBirth = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                                etDateOfIssue.setText(Helper.formatDMY(dayOfMonth,monthOfYear+1, year));
+                                dateOfIssue = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
             }
         });
 
-        spProfession = findViewById(R.id.spProfession);
-        String[] profession = {"Mahasiswa", "Dosen", "Karyawan", "PNS"};
+        spCategory = findViewById(R.id.spCategory);
+        String[] profession = {"Religi", "Bahasa", "Komik", "Komputer"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, profession);
-        spProfession.setAdapter(adapter);
-
-        rgGender = findViewById(R.id.rgGender);
-        rbMale = findViewById(R.id.rbMale);
-        rbFemale = findViewById(R.id.rbFemale);
+        spCategory.setAdapter(adapter);
 
         bnSave = findViewById(R.id.bnSave);
         bnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(contact == null){
-                    contact = new Contact();
-                    rbGender = findViewById(rgGender.getCheckedRadioButtonId());
-                    contact.name = etName.getText().toString();
-                    contact.email = etEmail.getText().toString();
-                    contact.gender = rbGender.getText().toString();
-                    contact.phone = etPhone.getText().toString();
-                    contact.profession = (String) spProfession.getSelectedItem();
-                    contact.dateOfBirth = dateOfBirth;
-                    AppDatabase.getInstance(getApplicationContext()).contactDao().insert(contact);
+                if(book == null){
+                    book = new Book();
+                    book.title = etTitle.getText().toString();
+                    book.isbn = etISBN.getText().toString();
+                    book.category = (String) spCategory.getSelectedItem();
+                    book.dateOfIssue = dateOfIssue;
+                    AppDatabase.getInstance(getApplicationContext()).bookDao().insert(book);
 
                     Toast.makeText(FormActivity.this,"Data berhasil disimpan",Toast.LENGTH_SHORT).show();
                 }else{
-                    rbGender = findViewById(rgGender.getCheckedRadioButtonId());
-                    contact.name = etName.getText().toString();
-                    contact.email = etEmail.getText().toString();
-                    contact.gender = rbGender.getText().toString();
-                    contact.phone = etPhone.getText().toString();
-                    contact.profession = (String) spProfession.getSelectedItem();
-                    contact.dateOfBirth = dateOfBirth;
-                    AppDatabase.getInstance(getApplicationContext()).contactDao().update(contact);
+                    book.title = etTitle.getText().toString();
+                    book.isbn = etISBN.getText().toString();
+                    book.category = (String) spCategory.getSelectedItem();
+                    book.dateOfIssue = dateOfIssue;
+                    AppDatabase.getInstance(getApplicationContext()).bookDao().update(book);
 
                     Toast.makeText(FormActivity.this,"Data berhasil diubah",Toast.LENGTH_SHORT).show();
                 }
@@ -113,18 +98,12 @@ public class FormActivity extends AppCompatActivity {
 
         //data dari Adapter
         Intent intent = getIntent();
-        contact = (Contact) intent.getSerializableExtra("contact");
-        if (contact != null) {
-            etName.setText(contact.name);
-            etEmail.setText(contact.email);
-            etPhone.setText(contact.phone);
-            etDateOfBirth.setText(Helper.formatDMY(contact.dateOfBirth));
-            dateOfBirth = contact.dateOfBirth;
-            if (contact.gender.equalsIgnoreCase("Laki-laki")) {
-                rbMale.setSelected(true);
-            } else {
-                rbMale.setSelected(true);
-            }
+        book = (Book) intent.getSerializableExtra("book");
+        if (book != null) {
+            etTitle.setText(book.title);
+            etISBN.setText(book.isbn);
+            etDateOfIssue.setText(Helper.formatDMY(book.dateOfIssue));
+            dateOfIssue = book.dateOfIssue;
         }
 
     }

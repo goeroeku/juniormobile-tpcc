@@ -15,11 +15,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lb_name"
-            android:textSize="16sp" />
+            android:text="@string/lb_title" />
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -32,11 +31,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lb_date_of_birth"
+            android:text="@string/lb_date_of_issue"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/etDateOfBirth"
+            android:id="@+id/etDateOfIssue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="false"
@@ -47,45 +46,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lb_profession" />
-
-        <Spinner
-            android:id="@+id/spProfession"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lb_gender" />
-
-        <RadioGroup
-            android:id="@+id/rgGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/lb_male" />
-
-            <RadioButton
-                android:id="@+id/rbFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lb_female" />
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lb_email" />
+            android:text="@string/lb_isbn" />
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etISBN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -94,14 +58,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lb_phone" />
+            android:text="@string/lb_category"
+            android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/etPhone"
+        <Spinner
+            android:id="@+id/spCategory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/bnSave"

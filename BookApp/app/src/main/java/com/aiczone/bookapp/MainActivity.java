@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.aiczone.bookapp.adapter.ContactAdapter;
+import com.aiczone.bookapp.adapter.BookAdapter;
 import com.aiczone.bookapp.db.AppDatabase;
-import com.aiczone.bookapp.model.Contact;
+import com.aiczone.bookapp.model.Book;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fab;
     private RecyclerView rvContact;
-    private ContactAdapter adapter;
+    private BookAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,28 +35,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        rvContact = findViewById(R.id.rvContact);
+        rvContact = findViewById(R.id.rvBook);
         rvContact.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
-//        dummy data
-//        List<Contact> contacts = new ArrayList<>();
-//        Contact contact = new Contact();
-//        contact.name = "Aic";
-//        contact.dateOfBirth = "01-01-2020";
-//        contact.profession = "Mahasiswa";
-//        contact.gender = "Laki-laki";
-//        contact.email = "admin@me.id";
-//        contact.phone = "0281";
-//        contacts.add(contact);
-//        contacts.add(contact);
 
         initListData();
     }
 
     private void initListData(){
-        List<Contact> contacts = AppDatabase.getInstance(this).contactDao().getAll();
 
-        adapter = new ContactAdapter(this,contacts);
+        List<Book> books = AppDatabase.getInstance(this).bookDao().getAll();
+
+        adapter = new BookAdapter(this,books);
         rvContact.setAdapter(adapter);
     }
 

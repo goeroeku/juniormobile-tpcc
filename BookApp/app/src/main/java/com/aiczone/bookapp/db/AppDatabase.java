@@ -6,12 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.aiczone.bookapp.model.Contact;
+import com.aiczone.bookapp.model.Book;
 
-@Database(entities = {Contact.class}, version = 1,exportSchema = false)
+@Database(entities = {Book.class}, version = 2,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract ContactDao contactDao();
+    public abstract BookDao bookDao();
 
     private static volatile AppDatabase instance;
 
