@@ -104,6 +104,12 @@ public class FormActivity extends AppCompatActivity {
             etISBN.setText(book.isbn);
             etDateOfIssue.setText(Helper.formatDMY(book.dateOfIssue));
             dateOfIssue = book.dateOfIssue;
+            for(int i=0; i < adapter.getCount(); i++) {
+                if(book.category.trim().equals(adapter.getItem(i).toString())){
+                    spCategory.setSelection(i);
+                    break;
+                }
+            }
         }
 
     }

@@ -121,9 +121,15 @@ public class FormActivity extends AppCompatActivity {
             etDateOfBirth.setText(Helper.formatDMY(contact.dateOfBirth));
             dateOfBirth = contact.dateOfBirth;
             if (contact.gender.equalsIgnoreCase("Laki-laki")) {
-                rbMale.setSelected(true);
+                rbMale.setChecked(true);
             } else {
-                rbMale.setSelected(true);
+                rbFemale.setChecked(true);
+            }
+            for(int i=0; i < adapter.getCount(); i++) {
+                if(contact.profession.trim().equals(adapter.getItem(i).toString())){
+                    spProfession.setSelection(i);
+                    break;
+                }
             }
         }
 
