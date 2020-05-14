@@ -1,4 +1,4 @@
-package com.aiczone.contactapp;
+package com.aiczone.bookapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,9 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.aiczone.contactapp.db.AppDatabase;
-import com.aiczone.contactapp.model.Contact;
-import com.aiczone.contactapp.utils.Helper;
+import com.aiczone.bookapp.db.AppDatabase;
+import com.aiczone.bookapp.model.Contact;
+import com.aiczone.bookapp.utils.Helper;
 
 import java.util.Calendar;
 

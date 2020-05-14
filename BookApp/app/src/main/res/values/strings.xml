@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Book App</string>
+    <string name="lb_name">Nama</string>
+    <string name="lb_date_of_birth">Tanggal Lahir</string>
+    <string name="lb_profession">Pekerjaan</string>
+    <string name="lb_gender">Jenis Kelamin</string>
+    <string name="lb_male">Laki-laki</string>
+    <string name="lb_female">Perempuan</string>
+    <string name="lb_email">Email</string>
+    <string name="lb_phone">Telpon</string>
+    <string name="bn_save">Simpan</string>
+    <string name="lb_delete">Hapus</string>
+</resources>
