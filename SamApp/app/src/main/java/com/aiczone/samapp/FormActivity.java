@@ -24,7 +24,6 @@ public class FormActivity extends AppCompatActivity {
 
     private EditText etCode, etName, etDateOfEntry, etLocation, etQty;
     private Spinner spCategory;
-    private Button bnSave;
 
     // data
     private String dateOfEntry = "";
@@ -40,7 +39,6 @@ public class FormActivity extends AppCompatActivity {
         etName = findViewById(R.id.et_name);
         etLocation = findViewById(R.id.et_location);
         etQty = findViewById(R.id.et_qty);
-        etQty.setText("012301230");
         etDateOfEntry = findViewById(R.id.et_date_of_entry);
         etDateOfEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +67,7 @@ public class FormActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, profession);
         spCategory.setAdapter(adapter);
 
-        bnSave = findViewById(R.id.bnSave);
+        Button bnSave = findViewById(R.id.bnSave);
         bnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +106,7 @@ public class FormActivity extends AppCompatActivity {
             etCode.setText(asset.code);
             etName.setText(asset.name);
             etLocation.setText(asset.location);
-            etQty.setText(asset.qty);
+            etQty.setText(String.valueOf(asset.qty));
             etDateOfEntry.setText(Helper.formatDMY(asset.dateOfEntry));
             dateOfEntry = asset.dateOfEntry;
             for (int i = 0; i < adapter.getCount(); i++) {
