@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">School Asset Management</string>
+
+    <string name="lb_code">Kode</string>
+    <string name="lb_name">Nama</string>
+    <string name="lb_date_of_entry">Tgl. Masuk</string>
+    <string name="lb_location">Lokasi</string>
+    <string name="lb_category">Kategori</string>
+    <string name="lb_qty">Jumlah</string>
+
+    <string name="bn_save">Simpan</string>
+</resources>

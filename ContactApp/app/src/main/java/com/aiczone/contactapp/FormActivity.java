@@ -76,6 +76,7 @@ public class FormActivity extends AppCompatActivity {
         rbFemale = findViewById(R.id.rbFemale);
 
         bnSave = findViewById(R.id.bnSave);
+
         bnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
